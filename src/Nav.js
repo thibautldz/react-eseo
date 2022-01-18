@@ -7,7 +7,7 @@ const Nav = ({ search, setSearch }) => {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="post">Post</Link></li>
                 <li><Link to="inscription">Inscription</Link></li>
-                <li><Link to="about">About</Link></li>
+                <li><Link to="connexion">Connexion</Link></li>
             </ul>
         </nav>
     )

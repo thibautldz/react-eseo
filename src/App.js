@@ -2,11 +2,11 @@ import Layout from './Layout';
 import Home from './Home';
 import NewPost from './NewPost';
 import PostPage from './PostPage';
-import About from './About';
 import Inscription from './Inscription';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import Connexion from './Connexion';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -86,7 +86,7 @@ function App() {
           />} />
         </Route>
         <Route path="inscription" element={<Inscription />} />
-        <Route path="about" element={<About />} />
+        <Route path="connexion" element={<Connexion />} />
       </Route>
     </Routes>
   );

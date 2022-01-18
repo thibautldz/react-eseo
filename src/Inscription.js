@@ -4,8 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword} from "firebase/auth";
 import {initializeApp} from "firebase/app";
-import { firebaseConfig  } from '../firebase';
-import Dashboard from './Dashbord';
+import { firebaseConfig  } from './firebase';
 import { LoadingOutlined } from '@ant-design/icons';
 import { addDoc, setDoc } from "firebase/firestore"; 
 import { getFirestore } from '@firebase/firestore';
@@ -33,10 +32,8 @@ const Inscription = (props) => {
 const docRef =  addDoc(setDoc(db, "users"), {
     name: values.nom,
     prenom: values.prenom,
-    age: values.age
 }).then(credentials);
 console.log("Document written with ID: ", docRef.id);
-      props.setActiveComponent(<Dashboard/>)
     })
     .catch((err) => {
       message.error(err.message)
@@ -61,10 +58,6 @@ console.log("Document written with ID: ", docRef.id);
     {
         name: "prenom",
         title: "prenom",
-    },
-    {
-        name: "age",
-        title: "age",
     },
 ]
 
