@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import PopularMovies from './components/PopularMovies'
 import Layout from './Layout';
 import Home from './Home';
@@ -10,8 +8,9 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import Connexion from './Connexion';
-
+  
 function App() {
+  const [moviesData, setMoviesData] = useState();
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -71,6 +70,7 @@ function App() {
   }
 
   return (
+    <div>
     <Routes>
       <Route path="/" element={<Layout
       />}>
@@ -90,8 +90,11 @@ function App() {
         </Route>
         <Route path="inscription" element={<Inscription />} />
         <Route path="connexion" element={<Connexion />} />
+        <Route path="popular" element={<PopularMovies/>} />
       </Route>
     </Routes>
+    
+    </div>
   );
 }
 
