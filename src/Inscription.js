@@ -5,17 +5,15 @@ import {
   createUserWithEmailAndPassword} from "firebase/auth";
 import {initializeApp} from "firebase/app";
 import { firebaseConfig  } from './firebase';
-import { LoadingOutlined } from '@ant-design/icons';
-import { addDoc, setDoc } from "firebase/firestore"; 
+import { addDoc, setDoc } from "firebase/firestore";
 import { getFirestore } from '@firebase/firestore';
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
-const db = getFirestore();
+const db = getFirestore(firebaseApp);
 
 const Inscription = (props) => {
 
-  const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
       name:"",
       firstName: "",
@@ -24,15 +22,13 @@ const Inscription = (props) => {
   })
 
   const onFinish = (values) => {
-    setLoading(<LoadingOutlined/>)
     createUserWithEmailAndPassword(auth, values.email, values.password)
     .then((credentials) => {
-      console.log(credentials)
-      setLoading(true)
 const docRef =  addDoc(setDoc(db, "users"), {
     name: values.nom,
     prenom: values.prenom,
 }).then(credentials);
+
 console.log("Document written with ID: ", docRef.id);
     })
     .catch((err) => {
@@ -44,21 +40,17 @@ console.log("Document written with ID: ", docRef.id);
 
   const label = [
     {
-        name: "email",
-        title: "mail",
-    },
-    {
-        name: "password",
-        title: "password",
-    },
-    {
         name: "nom",
-        title: "nom",
+        title: "Nom",
     },
     {
         name: "prenom",
-        title: "prenom",
+        title: "Prenom",
     },
+    {
+      name: "email",
+      title: "Email",
+  },
 ]
 
   const createMenuItem=(label) => {
@@ -68,7 +60,6 @@ console.log("Document written with ID: ", docRef.id);
         rules={[
             {
               required: true,
-              message: 'Please input !',
             },]}>
                  <Input />
         </Form.Item>
@@ -93,7 +84,16 @@ console.log("Document written with ID: ", docRef.id);
     >
     {
         label.map((label) => createMenuItem(label))
+        
     }
+    <Form.Item 
+        label = {"Password"} name = {"password"} 
+        rules={[
+            {
+              required: true,
+            },]}>
+                 <Input.Password />
+        </Form.Item>
       <Form.Item
         wrapperCol={{
           offset: 8,

@@ -2,7 +2,8 @@ import { Form, Input, Button, message } from 'antd';
 import { useEffect, useState } from 'react';
 import {
   getAuth,
-  signInWithEmailAndPassword} from "firebase/auth";
+  signInWithEmailAndPassword, 
+  onAuthStateChanged} from "firebase/auth";
 import {initializeApp} from "firebase/app";
 import { firebaseConfig  } from './firebase';
 
@@ -10,10 +11,18 @@ import { firebaseConfig  } from './firebase';
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 
+
 const Connexion = (props) => {
 
+  const [user, setUser] = useState({});
+
+  onAuthStateChanged(auth, (currentUser) => {
+  setUser(currentUser)
+  })
+
   const onFinish = (values) => {
-    signInWithEmailAndPassword(auth, values.email, values.password)
+    const user = signInWithEmailAndPassword(auth, values.email, values.password)
+    .then((props) => {return (<p> favoris </p>)})
     .then((credentials) => {
       console.log(credentials)
     })
@@ -73,6 +82,8 @@ const Connexion = (props) => {
           Valider
         </Button>
       </Form.Item>
+      <p>{user?.email}</p>
+      <p>{user?.uid}</p>
     </Form>
   );
 };
