@@ -25,7 +25,7 @@ const auth = getAuth(firebaseApp);
 const db = getFirestore();
 
 const Home = () => {
-  const [favorites, setFavorites] = useState([{}]);
+  const [favorites, setFavorites] = useState([]);
   const [user, setUser] = useState({});
   const auth = getAuth();
 
