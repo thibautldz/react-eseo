@@ -11,27 +11,34 @@ import { getFirestore } from '@firebase/firestore';
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
+const db = getFirestore();
 
 const Home = () => {
+      let [userfirestore, setUserF] = useState();
     const [user, setUser] = useState({});
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
         });
-        const[loading, setLoading] = useState(true);
-        const[details, setDetails] = useState([]);
-
+        let uid = user.uid;
         const userData = async () => {
-            const q = query(collection(db,"users"));
-
-            const querySnapshot = await getDocs(q);
-            const data = querySnapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            console.log(data);
+            const querySnapshot = await getDocs(collection(db,"users"));
+            querySnapshot.forEach((doc) => {
+              if(uid != null )
+              {
+                uid = '"' + uid + '"';
+                if(uid === doc.data().credentials){
+                  const userData = doc.data();
+                  setUserF(userData);
+                }
+              }
+            });
         };
-
+        
+        useEffect(() => {
+          userData();
+          console.log(userfirestore);
+        },[]);
+        //const arrayfavoris = userfirestore.favoris; 
     return (
         <Form
           name="basic"
