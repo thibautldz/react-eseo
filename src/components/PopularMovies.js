@@ -45,7 +45,7 @@ const PopularMovies = (history, props) => {
   const [moviesData, setMoviesData] = useState([]);
 
   useEffect(() => {
-    fetch(base_uri + "movie/top_rated" + "?api_key=" + apiKey)
+    fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKey)
       .then((response) => {
         return response.json();
       })
