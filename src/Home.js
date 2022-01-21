@@ -57,7 +57,7 @@ const Home = () => {
         console.log("state = definitely signed out");
       }
     });
-  }, [auth]);
+  }, []);
 
   //const arrayfavoris = userfirestore.favoris;
   return (
