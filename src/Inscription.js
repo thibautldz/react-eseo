@@ -27,6 +27,7 @@ const Inscription = (props) => {
           {
             name: values.email,
             prenom: values.prenom,
+            favoris: []
           }
         ).then((doc) =>
           console.log(doc)
