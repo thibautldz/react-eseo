@@ -98,11 +98,10 @@ const Inscription = (props) => {
       wrapperCol={{
         span: 16,
       }}
-      initialValues={{
-        remember: true,
-      }}
       autoComplete="off"
     >
+      <br />
+      <br />
       {label.map((label) => createMenuItem(label))}
       <Form.Item
         label={"Password"}

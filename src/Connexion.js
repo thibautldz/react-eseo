@@ -6,6 +6,7 @@ import {
   onAuthStateChanged} from "firebase/auth";
 import {initializeApp} from "firebase/app";
 import { firebaseConfig  } from './firebase';
+import 'antd/dist/antd.css'
 
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -41,11 +42,10 @@ const Connexion = (props) => {
       wrapperCol={{
         span: 16,
       }}
-      initialValues={{
-        remember: true,
-      }}
       autoComplete="off"
     >
+      <br />
+      <br />
       <Form.Item
         label="mail"
         name="email"

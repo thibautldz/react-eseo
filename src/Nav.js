@@ -1,16 +1,30 @@
 import { Link } from 'react-router-dom';
+import { Menu, Button } from 'antd';
+import 'antd/dist/antd.css'
 
 const Nav = ({ search, setSearch }) => {
     return (
-        <nav className="Nav">
-            <ul>
-                <li><Link to="/">Mes favoris</Link></li>
-                <li><Link to="inscription">Inscription</Link></li>
-                <li><Link to="connexion">Connexion</Link></li>
-                <li><Link to="popular">Les plus populaires</Link></li>
-                <li><Link to="disconnect">Déconnexion</Link></li> 
-            </ul>
-        </nav>
+        <Menu
+          defaultSelectedKeys={['1']}
+          mode="horizontal"
+          theme="dark"
+        >
+          <Menu.Item key="1">
+          <Link to="/">Mes favoris</Link>
+          </Menu.Item>
+          <Menu.Item key="2">
+          <Link to="inscription">Inscription</Link>
+          </Menu.Item>
+          <Menu.Item key="3" >
+          <Link to="connexion">Connexion</Link>
+        </Menu.Item>
+        <Menu.Item key="4">
+        <Link to="popular">Les plus populaires</Link>
+        </Menu.Item>
+        <Menu.Item key="5">
+        <Link to="disconnect">Déconnexion</Link>
+        </Menu.Item>
+        </Menu>
     )
 }
 

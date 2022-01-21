@@ -6,6 +6,7 @@ import Disconnect from './Disconnect';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Connexion from './Connexion';
+import 'antd/dist/antd.css'
   
 function App() {
   const [moviesData, setMoviesData] = useState();
