@@ -10,7 +10,6 @@ function App() {
   const [moviesData, setMoviesData] = useState();
   const navigate = useNavigate();
 
-
   return (
     <div>
     <Routes>

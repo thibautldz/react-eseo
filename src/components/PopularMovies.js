@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Form } from "antd";
 import MovieCard from "./MovieCard";
 import { Button } from 'antd';
-import { apiKey, base_uri, images_uri, getPosterUrl, getLink, getId} from "./movie_api";
+import { apiKey, base_uri, images_uri, getPosterUrl, getLink, getId, getMovieData} from "./movie_api";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -22,7 +22,7 @@ const PopularMovies = (history, props) => {
   onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser)
       })
-
+  
   const [moviesData, setMoviesData] = useState([]);
 
   useEffect(() => {
