@@ -18,7 +18,6 @@ const MovieCard = props => {
     cover={<img class="card_image" width="200" height="300" src={imageLink}></img>}
     >
     <Meta title={title} description={date} lien={link}/>
-    <Button type="primary">Ajouter aux favoris</Button>
   </Card>   
     )
 }

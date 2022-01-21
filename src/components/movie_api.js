@@ -16,6 +16,10 @@ export const getPosterUrl = (movie) => {
     return images_uri + movie.poster_path;
 }
 
+export const getId = (movie) => {
+    return movie["id"];
+}
+
 export const getLink = (movie) => {
     console.log("Movie id :", movie["id"]);
     return "https://www.themoviedb.org/movie/" + movie["id"];

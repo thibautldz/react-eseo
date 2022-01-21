@@ -5,35 +5,55 @@ import {
   createUserWithEmailAndPassword} from "firebase/auth";
 import {initializeApp} from "firebase/app";
 import { firebaseConfig  } from './firebase';
-import { addDoc, setDoc } from "firebase/firestore";
+import { addDoc, setDoc, collection} from "firebase/firestore";
 import { getFirestore } from '@firebase/firestore';
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
+
 const Inscription = (props) => {
 
-  const [state, setState] = useState({
-      name:"",
-      firstName: "",
-      age: "",
-      email: ""
-  })
+  const [state, setState] = useState()
 
   const onFinish = (values) => {
-    createUserWithEmailAndPassword(auth, values.email, values.password)
-    .then((credentials) => {
-const docRef =  addDoc(setDoc(db, "users"), {
-    name: values.nom,
-    prenom: values.prenom,
-}).then(credentials);
 
-console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((err) => {
-      message.error(err.message)
-    })
+    //RÃ©cupÃ©rer le pass et le mail dans values et la passer Ã  la
+
+    // methode signInWithEmailAndPassword
+
+    createUserWithEmailAndPassword(auth, values.email, values.password)
+
+      .then((credentials) => {
+
+        console.log(credentials);
+
+        console.log(state)
+
+        const docRef = {
+          name: values.email,
+          prenom: values.prenom,
+          credentials: credentials.user.uid,
+      };
+        addDoc(collection(db, "users"), docRef).then((doc) => console.log(doc));
+
+        //.catch(() => )
+
+        message.success("Vous êtes bien inscrit");
+
+
+        // props.setActiveComponent(<Dashboard />);
+
+      })
+
+      .catch((err) => {
+
+
+        message.error(err.message);
+
+      });
+
   };
 
   const onFinishFailed = (values) => {}
@@ -42,14 +62,23 @@ console.log("Document written with ID: ", docRef.id);
     {
         name: "nom",
         title: "Nom",
+        action: (e) => {
+          setState({ ...state, nom: e.target.value });
+        },
     },
     {
         name: "prenom",
         title: "Prenom",
+        action: (e) => {
+          setState({ ...state, prenom: e.target.value });
+        },
     },
     {
       name: "email",
       title: "Email",
+      action: (e) => {
+        setState({ ...state, email: e.target.value });
+      },
   },
 ]
 
@@ -84,7 +113,6 @@ console.log("Document written with ID: ", docRef.id);
     >
     {
         label.map((label) => createMenuItem(label))
-        
     }
     <Form.Item 
         label = {"Password"} name = {"password"} 

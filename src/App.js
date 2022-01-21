@@ -1,5 +1,6 @@
 import PopularMovies from './components/PopularMovies'
 import Layout from './Layout';
+import Home from './Home';
 import Inscription from './Inscription';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -13,7 +14,9 @@ function App() {
   return (
     <div>
     <Routes>
-      <Route path="/" element={<Layout/>}>
+      <Route path="/" element={<Layout
+      />}>
+        <Route index element={<Home />} />
         <Route path="inscription" element={<Inscription />} />
         <Route path="connexion" element={<Connexion />} />
         <Route path="popular" element={<PopularMovies/>} />
