@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Form } from "antd";
+import { Typography } from "antd";
 import MovieCard from "./MovieCard";
 import { Button } from "antd";
 import {
@@ -34,6 +34,7 @@ import { getFirestore } from "@firebase/firestore";
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+const { Title } = Typography;
 
 const PopularMovies = (history, props) => {
   // fetch data
@@ -64,22 +65,7 @@ const PopularMovies = (history, props) => {
   // return movie cards by iterating through data
   return (
     <div>
-      <Form
-        name="basic"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 16,
-        }}
-        initialValues={{
-          remember: true,
-        }}
-        autoComplete="off"
-      >
-        <p>{user?.email}</p>
-        <p>{user?.uid}</p>
-      </Form>
+      <Title level={5}>{user?.email}</Title>
       <h1> Les plus populaires de l'histoire : </h1>
       {moviesData.map((d) => (
         <div>

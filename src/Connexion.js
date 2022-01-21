@@ -1,4 +1,4 @@
-import { Form, Input, Button, message } from 'antd';
+import { Form, Input, Button, message, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import {
   getAuth,
@@ -11,7 +11,7 @@ import 'antd/dist/antd.css'
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
-
+const { Title } = Typography;
 
 const Connexion = (props) => {
 
@@ -40,10 +40,11 @@ const Connexion = (props) => {
         span: 8,
       }}
       wrapperCol={{
-        span: 16,
+        span: 8,
       }}
       autoComplete="off"
     >
+      <Title level={5}>{user?.email}</Title>
       <br />
       <br />
       <Form.Item
@@ -75,15 +76,13 @@ const Connexion = (props) => {
       <Form.Item
         wrapperCol={{
           offset: 8,
-          span: 16,
+          span: 8,
         }}
       >
         <Button type="primary" htmlType="submit">
           Valider
         </Button>
       </Form.Item>
-      <p>{user?.email}</p>
-      <p>{user?.uid}</p>
     </Form>
   );
 };

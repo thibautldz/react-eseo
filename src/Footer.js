@@ -1,7 +1,10 @@
+import { Typography, Divider } from 'antd';
+import 'antd/dist/antd.css'
+
 const Footer = () => {
     return (
         <footer className='Footer'>
-            <p>ESEO/ANTOINE/THIBAUT</p>
+            <h1>ESEO/ANTOINE/THIBAUT</h1>
         </footer>
     )
 }
