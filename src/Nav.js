@@ -8,6 +8,7 @@ const Nav = ({ search, setSearch }) => {
                 <li><Link to="inscription">Inscription</Link></li>
                 <li><Link to="connexion">Connexion</Link></li>
                 <li><Link to="popular">Les plus populaires</Link></li>
+                <li><Link to="disconnect">Déconnexion</Link></li> 
             </ul>
         </nav>
     )

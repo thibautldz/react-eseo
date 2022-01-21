@@ -2,6 +2,7 @@ import PopularMovies from './components/PopularMovies'
 import Layout from './Layout';
 import Home from './Home';
 import Inscription from './Inscription';
+import Disconnect from './Disconnect';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Connexion from './Connexion';
@@ -19,6 +20,7 @@ function App() {
         <Route path="inscription" element={<Inscription />} />
         <Route path="connexion" element={<Connexion />} />
         <Route path="popular" element={<PopularMovies/>} />
+        <Route path="disconnect" element={<Disconnect/>} /> 
       </Route>
     </Routes>
     
